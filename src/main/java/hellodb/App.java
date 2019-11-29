@@ -39,6 +39,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-        new App("jdbc:postgresql://127.0.0.1:5432/postgres?user=postgres&password=postgres");
+        new App("jdbc:postgresql://127.0.0.1:5432/pizzeria?user=postgres&password=postgres");
     }
 }
