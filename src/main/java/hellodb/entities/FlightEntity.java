@@ -1,5 +1,5 @@
 // Copyright (C) 2019 Dmitry Barashev
-package hellodb;
+package hellodb.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
