@@ -2,6 +2,7 @@
 package hellodb;
 
 import hellodb.handlers.PizzasHandler;
+import hellodb.handlers.ProductsHandler;
 
 import static spark.Spark.exception;
 import static spark.Spark.get;
@@ -15,8 +16,10 @@ import static spark.Spark.staticFiles;
  */
 public class App {
     private final PizzasHandler pizzasHandler;
+    private final ProductsHandler productsHandler;
 
-    private App(String dbUrl) {
+    App(String dbUrl) {
+        this.productsHandler = new ProductsHandler(dbUrl);
         this.pizzasHandler = new PizzasHandler(dbUrl);
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFiles.location("/public");
@@ -29,9 +32,13 @@ public class App {
             res.header("Content-type", "text/plain;charset=utf-8");
             return pizzasHandler.handle();
         });
+        get("/products", (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
+            return productsHandler.handle();
+        });
     }
 
     public static void main(String[] args) {
-        new App("jdbc:postgresql://127.0.0.1:5432/pizzeria?user=postgres&password=postgres");
+        new App("jdbc:postgresql://127.0.0.1:5432/postgres?user=postgres&password=postgres");
     }
 }
