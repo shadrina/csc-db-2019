@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
-//import java.sql.String;
 
 @Entity(name = "product")
 public class ProductEntity {
