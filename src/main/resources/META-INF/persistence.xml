@@ -3,13 +3,17 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
                             http://xmlns.jcp.org/xml/ns/persistence_2_1.xsd">
   <persistence-unit name="Postgres" transaction-type="RESOURCE_LOCAL">
-    <class>hellodb.entities.FlightEntity</class>
-    <class>hellodb.entities.PlanetEntity</class>
+    <class>hellodb.entities.PizzaEntity</class>
+    <class>hellodb.entities.ProductEntity</class>
+    <class>hellodb.entities.StockEntity</class>
+    <class>hellodb.entities.ReceiptEntity</class>
+    <class>hellodb.entities.ClientEntity</class>
+    <class>hellodb.entities.SupplierEntity</class>
     <properties>
       <!-- Configuring JDBC properties -->
-<!--      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/postgres" />-->
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://35.228.178.242:5400/postgres?user=postgres" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/pizzeria" />
       <property name="javax.persistence.jdbc.user" value="postgres" />
+      <property name="javax.persistence.jdbc.password" value="postgres" />
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
 

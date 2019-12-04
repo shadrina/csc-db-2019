@@ -5,18 +5,18 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "client")
+@Entity(name = "Client")
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter
     private Long id;
 
-    @Column
+    @Column(name= "phone_number")
     @Getter @Setter
     private String phoneNumber;
 
-    @Column
+    @Column(name = "discount_amount")
     @Getter @Setter
     private Integer discountAmount;
 

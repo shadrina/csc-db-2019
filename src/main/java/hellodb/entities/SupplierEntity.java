@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "supplier")
+@Entity(name = "Supplier")
 public class SupplierEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class SupplierEntity {
     @Getter @Setter
     private String name;
 
-    @Column
+    @Column(name = "phone_number")
     @Getter @Setter
     private String phoneNumber;
 

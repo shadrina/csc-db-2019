@@ -1,35 +1,22 @@
 package hellodb.handlers;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import hellodb.entities.ProductEntity;
-import lombok.AllArgsConstructor;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
-public class ProductsHandler {
-    private final String dbUrl;
-  
+import hellodb.entities.ProductEntity;
+
+import javax.persistence.TypedQuery;
+
+public class ProductsHandler implements JpaHandler {
     public String handle() {
-        try (Connection conn = DriverManager.getConnection(dbUrl)) {
-            PreparedStatement statement = conn.prepareStatement("SELECT id, name FROM Product");
-            List<ProductEntity> result = new ArrayList<>();
-            try (ResultSet rs = statement.executeQuery()) {
-                while (rs.next()) {
-                    ProductEntity productEntity = new ProductEntity();
-                    productEntity.setId(rs.getLong("id"));
-                    productEntity.setName(rs.getString("name"));
-                    result.add(productEntity);
-                }
-            }
-            return result.toString();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        List<ProductEntity> allProducts = new ArrayList<>();
+        run(entityManager -> {
+            TypedQuery<ProductEntity> typedQuery = entityManager.createQuery("SELECT P FROM Product P", ProductEntity.class);
+            allProducts.addAll(typedQuery.getResultList());
+        });
+        return allProducts.stream()
+                .map(ProductEntity::toString)
+                .collect(Collectors.joining("\n"));
     }
 }

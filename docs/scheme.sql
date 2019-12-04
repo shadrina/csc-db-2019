@@ -11,7 +11,7 @@ CREATE TABLE Product(
 );
 
 CREATE TABLE Stock(
-    product_id INT NOT NULL UNIQUE REFERENCES Product,
+    product_id INT NOT NULL PRIMARY KEY REFERENCES Product,
     remaining INT NOT NULL CHECK(remaining >= 0)
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE Receipt(
     pizza_id INT NOT NULL REFERENCES Pizza,
     product_id INT NOT NULL REFERENCES Product,
     product_amount INT NOT NULL CHECK(product_amount > 0),
-    UNIQUE(pizza_id, product_id)
+    PRIMARY KEY (pizza_id, product_id)
 );
 
 CREATE TABLE Client(
@@ -43,7 +43,7 @@ CREATE TABLE OrderDetails(
     order_id INT NOT NULL REFERENCES OrderInfo,
     pizza_id INT NOT NULL REFERENCES Pizza,
     amount INT NOT NULL CHECK (amount >= 0),
-    UNIQUE(order_id, pizza_id)
+    PRIMARY KEY (order_id, pizza_id)
 );
 
 CREATE TABLE Supplier(
@@ -56,7 +56,7 @@ CREATE TABLE SupplierArrangement(
     supplier_id INT NOT NULL REFERENCES Supplier,
     product_id INT NOT NULL REFERENCES Product,
     cost INT NOT NULL CHECK(cost >= 0),
-    UNIQUE(supplier_id, product_id)
+    PRIMARY KEY (supplier_id, product_id)
 );
 
 INSERT INTO Product VALUES (1, 'Sausage');

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "pizza")
+@Entity(name = "Pizza")
 public class PizzaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
