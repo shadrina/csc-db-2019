@@ -8,12 +8,23 @@ import static spark.Spark.port;
 import static spark.Spark.staticFiles;
 
 public class App {
-    private final PizzasHandler pizzasHandler = new PizzasHandler();
-    private final ProductsHandler productsHandler = new ProductsHandler();
-    private final ClientsHandler clientsHandler = new ClientsHandler();
-    private final SuppliersHandler suppliersHandler = new SuppliersHandler();
-    private final ReceiptsHandler receiptsHandler = new ReceiptsHandler();
-    private final StockHandler stockHandler = new StockHandler();
+    private void registerHandler(JpaHandler jpaHandler) {
+        String path = "/" + jpaHandler.getClass().getSimpleName().toLowerCase().replaceAll("handler", "");
+        get(path, (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
+            return jpaHandler.handle();
+        });
+    }
+
+    private void registerDefaultHandlers() {
+        registerHandler(new PizzasHandler());
+        registerHandler(new ProductsHandler());
+        registerHandler(new ReceiptsHandler());
+        registerHandler(new StockHandler());
+        registerHandler(new OrdersHandler());
+        registerHandler(new ClientsHandler());
+        registerHandler(new SuppliersHandler());
+    }
 
     private App() {
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
@@ -21,30 +32,7 @@ public class App {
         port(8080);
 
         get("/", (req, res) -> "index.html");
-        get("/pizzas", (req, res) -> {
-            res.header("Content-type", "text/plain;charset=utf-8");
-            return pizzasHandler.handle();
-        });
-        get("/products", (req, res) -> {
-            res.header("Content-type", "text/plain;charset=utf-8");
-            return productsHandler.handle();
-        });
-        get("/clients", (req, res) -> {
-            res.header("Content-type", "text/plain;charset=utf-8");
-            return clientsHandler.handle();
-        });
-        get("/suppliers", (req, res) -> {
-            res.header("Content-type", "text/plain;charset=utf-8");
-            return suppliersHandler.handle();
-        });
-        get("/receipts", (req, res) -> {
-            res.header("Content-type", "text/plain;charset=utf-8");
-            return receiptsHandler.handle();
-        });
-        get("/stock", (req, res) -> {
-            res.header("Content-type", "text/plain;charset=utf-8");
-            return stockHandler.handle();
-        });
+        registerDefaultHandlers();
     }
 
     public static void main(String[] args) {

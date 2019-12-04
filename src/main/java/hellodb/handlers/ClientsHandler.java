@@ -9,6 +9,7 @@ import hellodb.entities.ClientEntity;
 import javax.persistence.TypedQuery;
 
 public class ClientsHandler implements JpaHandler {
+    @Override
     public String handle() {
         List<ClientEntity> allClients = new ArrayList<>();
         run(entityManager -> {

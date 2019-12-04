@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PizzasHandler implements JpaHandler {
+    @Override
     public String handle() {
         List<PizzaEntity> allPizzas = new ArrayList<>();
         run(entityManager -> {

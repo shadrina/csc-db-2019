@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "Client")
 public class ClientEntity {
@@ -19,6 +20,10 @@ public class ClientEntity {
     @Column(name = "discount_amount")
     @Getter @Setter
     private Integer discountAmount;
+
+    @OneToMany(mappedBy = "client")
+    @Getter @Setter
+    private List<OrderInfoEntity> orders;
 
     @Override
     public String toString() {

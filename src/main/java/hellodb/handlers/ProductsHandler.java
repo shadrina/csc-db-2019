@@ -9,6 +9,7 @@ import hellodb.entities.ProductEntity;
 import javax.persistence.TypedQuery;
 
 public class ProductsHandler implements JpaHandler {
+    @Override
     public String handle() {
         List<ProductEntity> allProducts = new ArrayList<>();
         run(entityManager -> {

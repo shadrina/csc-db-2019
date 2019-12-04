@@ -28,7 +28,7 @@ CREATE TABLE Client(
     discount_amount INT NOT NULL CHECK(discount_amount >= 0 AND discount_amount <= 100) DEFAULT 0
 );
 
-CREATE TYPE OrderStatus AS ENUM ('принят', 'в обработке', 'отгружен', 'выполнен');
+CREATE TYPE OrderStatus AS ENUM ('ACCEPTED', 'IN_PROGRESS', 'SHIPPED', 'DONE');
 
 CREATE TABLE OrderInfo(
     id SERIAL NOT NULL PRIMARY KEY,
@@ -153,9 +153,9 @@ INSERT INTO Client VALUES (3, '89265642376', 10);
 INSERT INTO Client VALUES (4, '89523345656', 15);
 INSERT INTO Client VALUES (5, '89138051365', 5);
 
-INSERT INTO OrderInfo VALUES (1, 1, '8649 Aspen Ave. Pataskala, OH 43062', 'выполнен', '2019-12-01 12:05:00', '2019-12-02 13:00:00');
-INSERT INTO OrderInfo VALUES (2, 2, '910 Snake Hill Circle Chambersburg, PA 17201', 'отгружен', '2019-12-03 11:00:00', '2019-12-03 16:00:00');
-INSERT INTO OrderInfo VALUES (3, 4, '708 Brandywine St. Clinton Township, MI 48035', 'принят', '2019-12-03 12:00:00', '2019-12-03 14:00:00');
+INSERT INTO OrderInfo VALUES (1, 1, '8649 Aspen Ave. Pataskala, OH 43062', 'DONE', '2019-12-01 12:05:00', '2019-12-02 13:00:00');
+INSERT INTO OrderInfo VALUES (2, 2, '910 Snake Hill Circle Chambersburg, PA 17201', 'SHIPPED', '2019-12-03 11:00:00', '2019-12-03 16:00:00');
+INSERT INTO OrderInfo VALUES (3, 4, '708 Brandywine St. Clinton Township, MI 48035', 'ACCEPTED', '2019-12-03 12:00:00', '2019-12-03 14:00:00');
 
 INSERT INTO OrderDetails VALUES (1, 1, 2);
 INSERT INTO OrderDetails VALUES (2, 3, 1);

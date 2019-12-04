@@ -9,6 +9,7 @@ import hellodb.entities.SupplierEntity;
 import javax.persistence.TypedQuery;
 
 public class SuppliersHandler implements JpaHandler {
+    @Override
     public String handle() {
         List<SupplierEntity> allSuppliers = new ArrayList<>();
         run(entityManager -> {

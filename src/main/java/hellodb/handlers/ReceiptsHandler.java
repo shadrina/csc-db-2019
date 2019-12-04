@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReceiptsHandler implements JpaHandler {
+    @Override
     public String handle() {
         List<ReceiptEntity> allReceipts = new ArrayList<>();
         run(entityManager -> {

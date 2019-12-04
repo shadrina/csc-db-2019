@@ -6,7 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.function.Consumer;
 
-interface JpaHandler {
+public interface JpaHandler {
     default void run(Consumer<EntityManager> code) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Postgres");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -23,4 +23,6 @@ interface JpaHandler {
         }
         entityManagerFactory.close();
     }
+
+    String handle();
 }
