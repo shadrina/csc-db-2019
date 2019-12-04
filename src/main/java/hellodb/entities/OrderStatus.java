@@ -1,18 +1,21 @@
 package hellodb.entities;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
 import lombok.Setter;
 
+import java.nio.charset.StandardCharsets;
+
+@AllArgsConstructor
 public enum OrderStatus {
     ACCEPTED("принят"),
     IN_PROGRESS("в обработке"),
     SHIPPED("отгружен"),
     DONE("выполнен");
 
-    @Getter @Setter
+    @Setter
     private String description;
 
-    OrderStatus(String description) {
-        this.description = description;
+    public String getDescription() {
+        return new String(description.getBytes(), StandardCharsets.UTF_8);
     }
 }

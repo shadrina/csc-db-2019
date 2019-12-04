@@ -1,4 +1,4 @@
-package hellodb.handlers;
+package hellodb.handlers.simple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import hellodb.entities.SupplierEntity;
 
 import javax.persistence.TypedQuery;
 
-public class SuppliersHandler implements JpaHandler {
+public class SuppliersHandler implements DefaultJpaHandler {
     @Override
     public String handle() {
         List<SupplierEntity> allSuppliers = new ArrayList<>();

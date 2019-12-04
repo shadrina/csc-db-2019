@@ -1,4 +1,4 @@
-package hellodb.handlers;
+package hellodb.handlers.simple;
 
 import hellodb.entities.StockEntity;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StockHandler implements JpaHandler {
+public class StockHandler implements DefaultJpaHandler {
     @Override
     public String handle() {
         List<StockEntity> stock = new ArrayList<>();

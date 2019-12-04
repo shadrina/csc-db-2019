@@ -1,4 +1,4 @@
-package hellodb.handlers;
+package hellodb.handlers.simple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import hellodb.entities.ProductEntity;
 
 import javax.persistence.TypedQuery;
 
-public class ProductsHandler implements JpaHandler {
+public class ProductsHandler implements DefaultJpaHandler {
     @Override
     public String handle() {
         List<ProductEntity> allProducts = new ArrayList<>();

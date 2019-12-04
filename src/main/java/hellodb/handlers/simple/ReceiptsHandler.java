@@ -1,4 +1,4 @@
-package hellodb.handlers;
+package hellodb.handlers.simple;
 
 import hellodb.entities.ReceiptEntity;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReceiptsHandler implements JpaHandler {
+public class ReceiptsHandler implements DefaultJpaHandler {
     @Override
     public String handle() {
         List<ReceiptEntity> allReceipts = new ArrayList<>();

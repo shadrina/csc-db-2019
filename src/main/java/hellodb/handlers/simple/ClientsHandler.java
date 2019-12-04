@@ -1,4 +1,4 @@
-package hellodb.handlers;
+package hellodb.handlers.simple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import hellodb.entities.ClientEntity;
 
 import javax.persistence.TypedQuery;
 
-public class ClientsHandler implements JpaHandler {
+public class ClientsHandler implements DefaultJpaHandler {
     @Override
     public String handle() {
         List<ClientEntity> allClients = new ArrayList<>();

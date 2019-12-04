@@ -23,6 +23,4 @@ public interface JpaHandler {
         }
         entityManagerFactory.close();
     }
-
-    String handle();
 }

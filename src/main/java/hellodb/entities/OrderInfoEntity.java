@@ -1,5 +1,6 @@
 package hellodb.entities;
 
+import hellodb.entities.converters.OrderStatusConverter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +10,14 @@ import java.util.Date;
 @Entity(name = "OrderInfo")
 public class OrderInfoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "orderinfo_id_seq", sequenceName = "orderinfo_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderinfo_id_seq")
+    @Column(name = "id")
     @Getter @Setter
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    @JoinColumn(name = "client_id")
     @MapsId
     @Getter @Setter
     private ClientEntity client;
@@ -24,7 +27,7 @@ public class OrderInfoEntity {
     private String address;
 
     @Column
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = OrderStatusConverter.class)
     @Getter @Setter
     private OrderStatus status;
 

@@ -28,13 +28,11 @@ CREATE TABLE Client(
     discount_amount INT NOT NULL CHECK(discount_amount >= 0 AND discount_amount <= 100) DEFAULT 0
 );
 
-CREATE TYPE OrderStatus AS ENUM ('ACCEPTED', 'IN_PROGRESS', 'SHIPPED', 'DONE');
-
 CREATE TABLE OrderInfo(
     id SERIAL NOT NULL PRIMARY KEY,
     client_id INT REFERENCES Client,
     address TEXT NOT NULL,
-    status OrderStatus NOT NULL,
+    status TEXT NOT NULL,
     date DATE NOT NULL,
     delivery_date DATE NOT NULL
 );
@@ -76,11 +74,15 @@ INSERT INTO Product VALUES (14, 'Onion');
 INSERT INTO Product VALUES (15, 'Beef');
 INSERT INTO Product VALUES (16, 'Pineapple');
 
+SELECT setval('product_id_seq', (SELECT MAX(id) from Product));
+
 INSERT INTO Pizza VALUES (1, 'Margherita', 520, 450);
 INSERT INTO Pizza VALUES (2, 'Pepperoni', 500, 420);
 INSERT INTO Pizza VALUES (3, 'Bonanza', 430, 480);
 INSERT INTO Pizza VALUES (4, 'Alfredo', 550, 500);
 INSERT INTO Pizza VALUES (5, 'Hawaiian', 444, 400);
+
+SELECT setval('pizza_id_seq', (SELECT MAX(id) from Pizza));
 
 INSERT INTO Stock VALUES (1, 1000);
 INSERT INTO Stock VALUES (2, 1000);
@@ -153,9 +155,13 @@ INSERT INTO Client VALUES (3, '89265642376', 10);
 INSERT INTO Client VALUES (4, '89523345656', 15);
 INSERT INTO Client VALUES (5, '89138051365', 5);
 
-INSERT INTO OrderInfo VALUES (1, 1, '8649 Aspen Ave. Pataskala, OH 43062', 'DONE', '2019-12-01 12:05:00', '2019-12-02 13:00:00');
-INSERT INTO OrderInfo VALUES (2, 2, '910 Snake Hill Circle Chambersburg, PA 17201', 'SHIPPED', '2019-12-03 11:00:00', '2019-12-03 16:00:00');
-INSERT INTO OrderInfo VALUES (3, 4, '708 Brandywine St. Clinton Township, MI 48035', 'ACCEPTED', '2019-12-03 12:00:00', '2019-12-03 14:00:00');
+SELECT setval('client_id_seq', (SELECT MAX(id) from Client));
+
+INSERT INTO OrderInfo VALUES (1, 1, '8649 Aspen Ave. Pataskala, OH 43062', 'принят', '2019-12-01 12:05:00', '2019-12-02 13:00:00');
+INSERT INTO OrderInfo VALUES (2, 2, '910 Snake Hill Circle Chambersburg, PA 17201', 'отгружен', '2019-12-03 11:00:00', '2019-12-03 16:00:00');
+INSERT INTO OrderInfo VALUES (3, 4, '708 Brandywine St. Clinton Township, MI 48035', 'выполнен', '2019-12-03 12:00:00', '2019-12-03 14:00:00');
+
+SELECT setval('orderinfo_id_seq', (SELECT MAX(id) from OrderInfo));
 
 INSERT INTO OrderDetails VALUES (1, 1, 2);
 INSERT INTO OrderDetails VALUES (2, 3, 1);
@@ -166,6 +172,8 @@ INSERT INTO OrderDetails VALUES (3, 4, 4);
 INSERT INTO Supplier VALUES (1, 'Bacon&Beef', '3333232');
 INSERT INTO Supplier VALUES (2, 'Greatest Products', '3340907');
 INSERT INTO Supplier VALUES (3, 'Pyaterochka', '5555505');
+
+SELECT setval('supplier_id_seq', (SELECT MAX(id) from Supplier));
 
 INSERT INTO SupplierArrangement VALUES (1, 11, 73);
 INSERT INTO SupplierArrangement VALUES (1, 15, 63);

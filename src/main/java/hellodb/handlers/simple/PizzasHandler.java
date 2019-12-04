@@ -1,4 +1,4 @@
-package hellodb.handlers;
+package hellodb.handlers.simple;
 
 import hellodb.entities.PizzaEntity;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PizzasHandler implements JpaHandler {
+public class PizzasHandler implements DefaultJpaHandler {
     @Override
     public String handle() {
         List<PizzaEntity> allPizzas = new ArrayList<>();
