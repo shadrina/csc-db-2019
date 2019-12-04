@@ -1,17 +1,15 @@
 package hellodb.handlers;
 
 import hellodb.entities.PizzaEntity;
+import lombok.AllArgsConstructor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 public class PizzasHandler {
     private final String dbUrl;
-
-    public PizzasHandler(String dbUrl) {
-        this.dbUrl = dbUrl;
-    }
 
     public String handle() {
         try (Connection conn = DriverManager.getConnection(dbUrl)) {

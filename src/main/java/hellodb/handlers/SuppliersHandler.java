@@ -8,13 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import hellodb.entities.SupplierEntity;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class SuppliersHandler {
     private final String dbUrl;
-
-    public SuppliersHandler(String dbUrl) {
-        this.dbUrl = dbUrl;
-    }
   
     public String handle() {
         try (Connection conn = DriverManager.getConnection(dbUrl)) {

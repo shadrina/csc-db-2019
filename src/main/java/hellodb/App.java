@@ -1,8 +1,10 @@
 // Copyright (C) 2019 Dmitry Barashev
 package hellodb;
 
+import hellodb.handlers.ClientsHandler;
 import hellodb.handlers.PizzasHandler;
 import hellodb.handlers.ProductsHandler;
+import hellodb.handlers.SuppliersHandler;
 
 import static spark.Spark.exception;
 import static spark.Spark.get;
@@ -17,17 +19,19 @@ import static spark.Spark.staticFiles;
 public class App {
     private final PizzasHandler pizzasHandler;
     private final ProductsHandler productsHandler;
+    private final ClientsHandler clientsHandler;
+    private final SuppliersHandler suppliersHandler;
 
-    App(String dbUrl) {
+    private App(String dbUrl) {
         this.productsHandler = new ProductsHandler(dbUrl);
         this.pizzasHandler = new PizzasHandler(dbUrl);
+        this.clientsHandler = new ClientsHandler(dbUrl);
+        this.suppliersHandler = new SuppliersHandler(dbUrl);
+
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFiles.location("/public");
         port(8080);
 
-        get("/hello", (req, res) -> {
-            return "Hello DB";
-        });
         get("/pizzas", (req, res) -> {
             res.header("Content-type", "text/plain;charset=utf-8");
             return pizzasHandler.handle();
@@ -35,6 +39,14 @@ public class App {
         get("/products", (req, res) -> {
             res.header("Content-type", "text/plain;charset=utf-8");
             return productsHandler.handle();
+        });
+        get("/clients", (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
+            return clientsHandler.handle();
+        });
+        get("/suppliers", (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
+            return suppliersHandler.handle();
         });
     }
 

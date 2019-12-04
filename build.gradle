@@ -16,6 +16,8 @@ dependencies {
     compile "com.sparkjava:spark-core:2.7+"
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
 }
 
 mainClassName = 'hellodb.App'
