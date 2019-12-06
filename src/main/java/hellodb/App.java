@@ -41,7 +41,7 @@ public class App {
             Long id = Long.parseLong(req.queryParams("id"));
             String phone = req.queryParams("phone");
             String address = req.queryParams("address");
-            Date deliveryTime = new SimpleDateFormat("dd-MM-yyyy HH-mm").parse(req.queryParams("delivery_time"));
+            Date deliveryTime = new SimpleDateFormat("yyyy-MM-dd HH-mm").parse(req.queryParams("delivery_time"));
             return updateOrderHandler.handle(id, phone, address, deliveryTime);
         });
         get("/update_order_contents", (req, res) -> {
