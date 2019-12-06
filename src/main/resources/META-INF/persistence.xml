@@ -8,11 +8,12 @@
     <class>hellodb.entities.StockEntity</class>
     <class>hellodb.entities.ReceiptEntity</class>
     <class>hellodb.entities.OrderInfoEntity</class>
+    <class>hellodb.entities.OrderDetailsEntity</class>
     <class>hellodb.entities.ClientEntity</class>
     <class>hellodb.entities.SupplierEntity</class>
     <properties>
       <!-- Configuring JDBC properties -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/pizzeria" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/postgres" />
       <property name="javax.persistence.jdbc.user" value="postgres" />
       <property name="javax.persistence.jdbc.password" value="postgres" />
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />

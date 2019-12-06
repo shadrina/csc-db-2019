@@ -6,13 +6,15 @@ import hellodb.entities.OrderStatus;
 
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 public class UpdateOrderHandler implements JpaHandler {
-    public void handle(Long id, String phone, String address, Date deliveryDate) {
+    public String handle(Long id, String phone, String address, Date deliveryDate) {
         if (!phone.startsWith("8")) {
             throw new RuntimeException("Client phone should begin with '8' digit");
         }
+        List<OrderInfoEntity> orderInfo = new ArrayList<>();
         run(entityManager -> {
             OrderInfoEntity orderInfoEntity = id == null ? null : entityManager.find(OrderInfoEntity.class, id);
             if (orderInfoEntity == null) {
@@ -38,6 +40,9 @@ public class UpdateOrderHandler implements JpaHandler {
 
             entityManager.persist(clientEntity);
             entityManager.persist(orderInfoEntity);
+
+            orderInfo.add(orderInfoEntity);
         });
+        return orderInfo.get(0).toString();
     }
 }

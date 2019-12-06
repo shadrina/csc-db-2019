@@ -5,6 +5,7 @@
 </head>
 <body>
 <ul>
+    <li>Simple queries (showing database content):</li>
     <li><a href="/pizzas">Pizzas</a></li>
     <li><a href="/products">Products</a></li>
     <li><a href="/stock">Stock</a></li>
@@ -12,6 +13,11 @@
     <li><a href="/orders">Orders</a></li>
     <li><a href="/clients">Clients</a></li>
     <li><a href="/suppliers">Suppliers</a></li>
+    <li>Hard queries:</li>
+    <li><a href="/update_order?id=-1&phone=89211234567&address=дом&delivery_time=2019-11-24+15-00">Add new order (update order)</a></li>
+    <li><a href="/update_order_contents?id=1&pizza=Margherita&count=%2B1">Add 1 Margherita to order 1 (update order contents)</a></li>
+    <li><a href="/update_order_contents?id=1&pizza=Margherita&count=-1">Remove 1 Margherita from order 1 (update order contents)</a></li>
+    <li><a href="/update_order_contents?id=1&pizza=Margherita&count=10">Set Margherita`s count in order 1 to 10 (update order contents)</a></li>
 </ul>
 </body>
 </html>

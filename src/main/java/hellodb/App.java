@@ -29,6 +29,7 @@ public class App {
 
     private App() {
         UpdateOrderHandler updateOrderHandler = new UpdateOrderHandler();
+        UpdateOrderContentsHandler updateOrderContentsHandler = new UpdateOrderContentsHandler();
 
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFiles.location("/public");
@@ -41,8 +42,13 @@ public class App {
             String phone = req.queryParams("phone");
             String address = req.queryParams("address");
             Date deliveryTime = new SimpleDateFormat("dd-MM-yyyy HH-mm").parse(req.queryParams("delivery_time"));
-            updateOrderHandler.handle(id, phone, address, deliveryTime);
-            return null;
+            return updateOrderHandler.handle(id, phone, address, deliveryTime);
+        });
+        get("/update_order_contents", (req, res) -> {
+            Long id = Long.parseLong(req.queryParams("id"));
+            String pizza = req.queryParams("pizza");
+            String count = req.queryParams("count");
+            return updateOrderContentsHandler.handle(id, pizza, count);
         });
     }
 
