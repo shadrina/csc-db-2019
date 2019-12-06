@@ -28,6 +28,7 @@ public class App {
     }
 
     private App() {
+        SalesHandler salesHandler = new SalesHandler();
         UpdateOrderHandler updateOrderHandler = new UpdateOrderHandler();
         UpdateOrderContentsHandler updateOrderContentsHandler = new UpdateOrderContentsHandler();
 
@@ -37,6 +38,10 @@ public class App {
 
         registerDefaultHandlers();
         get("/", (req, res) -> "index.html");
+        get("/sales", (req, res) -> {
+            String pizza = req.queryParams("pizza");
+            return salesHandler.handle(pizza);
+        });
         get("/update_order", (req, res) -> {
             Long id = Long.parseLong(req.queryParams("id"));
             String phone = req.queryParams("phone");
