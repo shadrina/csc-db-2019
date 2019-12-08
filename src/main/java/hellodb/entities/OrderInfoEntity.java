@@ -17,8 +17,7 @@ public class OrderInfoEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    @MapsId
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     @Getter @Setter
     private ClientEntity client;
 

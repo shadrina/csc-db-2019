@@ -39,10 +39,12 @@ public class App {
         registerDefaultHandlers();
         get("/", (req, res) -> "index.html");
         get("/sales", (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
             String pizza = req.queryParams("pizza");
             return salesHandler.handle(pizza);
         });
         get("/update_order", (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
             Long id = Long.parseLong(req.queryParams("id"));
             String phone = req.queryParams("phone");
             String address = req.queryParams("address");
@@ -50,6 +52,7 @@ public class App {
             return updateOrderHandler.handle(id, phone, address, deliveryTime);
         });
         get("/update_order_contents", (req, res) -> {
+            res.header("Content-type", "text/plain;charset=utf-8");
             Long id = Long.parseLong(req.queryParams("id"));
             String pizza = req.queryParams("pizza");
             String count = req.queryParams("count");

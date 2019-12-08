@@ -35,7 +35,7 @@ public class UpdateOrderContentsHandler implements JpaHandler {
             queryOrderDetails.setParameter("order_id", id);
             queryOrderDetails.setParameter("pizza_id", pizzaEntity.getId());
             List<OrderDetailsEntity> orderDetailsList = queryOrderDetails.getResultList();
-            OrderDetailsEntity orderDetailsEntity = new OrderDetailsEntity();
+            OrderDetailsEntity orderDetailsEntity;
             if (orderDetailsList.size() == 0) {
                 orderDetailsEntity = new OrderDetailsEntity();
                 OrderDetailsId orderDetailsId = new OrderDetailsId();
